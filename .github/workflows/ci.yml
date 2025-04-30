@@ -4,16 +4,17 @@ on: [push]
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04  
     steps:
-    - uses: actions/checkout@v3
-    - name: Set up Python
-      uses: actions/setup-python@v4
-      with:
-        python-version: 3.14
-    - name: Install dependencies
-      run: pip install -r requirements.txt
-    - name: Check model loading
-      run: |
-        python -c "import joblib; joblib.load('iris_model.pkl')"
+      - uses: actions/checkout@v3
 
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.10"  
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Check model loading
+        run: python -c "import joblib; joblib.load('iris_model.pkl')"
